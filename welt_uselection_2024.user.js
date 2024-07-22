@@ -18,9 +18,36 @@ const getElements = () => {
   const state2Container = document.querySelector('[data-cy="Container-n16"]');
   const state3Container = document.querySelector('[data-cy="Container-n10"]');
   console.log(state1Container, state2Container, state3Container);
-  state1Container.addEventListener('click', () => fetch('http://localhost:3000/flowics/1'));
-  state2Container.addEventListener('click', () => fetch('http://localhost:3000/flowics/2'));
-  state3Container.addEventListener('click', () => fetch('http://localhost:3000/flowics/3'));
+  //state1Container.addEventListener('click', () => fetch('http://localhost:3000/flowics/1'));
+  state1Container.addEventListener('click', () =>
+    fetch('http://localhost:3000/data-providers/ap/current-state', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ postalcode: 1, sendData: 'flowics' }),
+    })
+  );
+  //state2Container.addEventListener('click', () => fetch('http://localhost:3000/flowics/2'));
+  state2Container.addEventListener('click', () =>
+    fetch('http://localhost:3000/data-providers/ap/current-state', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ postalcode: 2, sendData: 'flowics' }),
+    })
+  );
+  //state3Container.addEventListener('click', () => fetch('http://localhost:3000/flowics/3'));
+  state3Container.addEventListener('click', () =>
+    fetch('http://localhost:3000/data-providers/ap/current-state', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ postalcode: 3, sendData: 'flowics' }),
+    })
+  );
 };
 
 setTimeout(getElements, 3000);
