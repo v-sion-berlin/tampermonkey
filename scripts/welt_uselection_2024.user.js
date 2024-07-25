@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         US election 2024 @WELT
 // @namespace    http://tampermonkey.net/
-// @version      2024-07-19
+// @version      2024-07-25
 // @description  Helper script for the us eleciton 2024. The script is used to control the artist and the data update from flowics.
 // @author       v-sion GmbH
 // @match        https://viz.flowics.com/public/ae704a85a5d4cad3798434fa4e0a4374/669abdc9681ab419a091ee46/live
