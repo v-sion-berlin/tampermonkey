@@ -146,7 +146,6 @@ const getChildren = (element) => {
  * @param {Function} callback
  */
 const addClickEvent = (text, callback) => {
-  console.log(callback);
   const textElement = findNode(siteStructure, 'text', text).element;
   textElement
     .closest('[data-cy^="Container-"]')
