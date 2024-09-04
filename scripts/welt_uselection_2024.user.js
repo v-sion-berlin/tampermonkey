@@ -7,7 +7,6 @@
 // @match        https://viz.flowics.com/public/ae704a85a5d4cad3798434fa4e0a4374/669abdc9681ab419a091ee46/live
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=flowics.com
 // @grant        none
-// @run-at document-start
 // ==/UserScript==
 
 'use strict';
@@ -25,16 +24,22 @@ console.log('Load Tampermonkey script');
  */
 const eventList = [
   {
-    text: 'State 1',
-    callback: () => webSocket.send({ postalCode: '1', sendData: 'flowics' }),
+    text: 'CA',
+    callback: () =>
+      webSocket.send({
+        action: 'set current state',
+        statePostal: 'CA',
+        sendData: 'flowics',
+      }),
   },
   {
-    text: 'State 2',
-    callback: () => webSocket.send({ postalCode: '2', sendData: 'flowics' }),
-  },
-  {
-    text: 'State 3',
-    callback: () => webSocket.send({ postalCode: '3', sendData: 'flowics' }),
+    text: 'TX',
+    callback: () =>
+      webSocket.send({
+        action: 'set current state',
+        statePostal: 'TX',
+        sendData: 'flowics',
+      }),
   },
 ];
 
@@ -46,7 +51,7 @@ const eventList = [
  * verloren geht, wird beim nächsten Sendung versucht, eine neue aufzubauen.
  */
 class WS {
-  static #URL = 'http://localhost:3000/data-providers/ap/current-state';
+  static #URL = 'https://data.v-sion.de:3000/data-providers/ap/current-state';
   #websocket;
 
   constructor() {
@@ -147,9 +152,7 @@ const getChildren = (element) => {
  */
 const addClickEvent = (text, callback) => {
   const textElement = findNode(siteStructure, 'text', text).element;
-  textElement
-    .closest('[data-cy^="Container-"]')
-    .addEventListener('click', callback);
+  textElement.closest('[data-cy^="Text-"]').addEventListener('click', callback);
 };
 
 /**
@@ -187,30 +190,40 @@ const postRequest = async (url, body) => {
 //////////////
 //// INIT ////
 //////////////
-
-document.addEventListener('DOMContentLoaded', () => {
-  /**
-   * We observe the #root-container because we don't know when loading the
-   * flowics package is finished. After adding the first element to the #root-
-   * container the timeout is set to one second. If there will be more elements
-   * added within this second the timer starts again. After one second we assume
-   * that the loading is finished and start initilising our stuff.
-   */
-  let timer;
-  const observer = new MutationObserver((mutationList, observer) => {
+let timer;
+const observer = new MutationObserver((mutations, observer) => {
+  if (
+    mutations.every(
+      (mutation) =>
+        mutation.target.closest('[data-cy^="TextCrawler-"]') === null,
+    )
+  ) {
     clearTimeout(timer);
     timer = setTimeout(() => {
       observer.disconnect();
       init();
-    }, 1000);
-  });
-
-  observer.observe(document.querySelector('#root-container'), {
-    attributes: true,
-    childList: true,
-    subtree: true,
-  });
+    }, 750);
+  }
 });
+
+const waitForDomContent = () => {
+  console.log('waitForDomContent');
+  setTimeout(() => {
+    const rootContainer = document.querySelector('#root-container');
+    console.log(rootContainer);
+
+    if (rootContainer !== null) {
+      observer.observe(rootContainer, {
+        attributes: false,
+        childList: true,
+        subtree: true,
+      });
+    } else {
+      waitForDomContent();
+    }
+  }, 500);
+};
+waitForDomContent();
 
 let webSocket;
 let siteStructure;
