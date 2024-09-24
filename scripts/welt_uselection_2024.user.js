@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         US election 2024 @WELT
+// @name         US election 2024 @WELT LOCALHOST
 // @namespace    http://tampermonkey.net/
 // @version      2024-07-25
 // @description  Helper script for the us eleciton 2024. The script is used to control the artist and the data update from flowics.
@@ -23,24 +23,17 @@ console.log('Load Tampermonkey script');
  * Der Callback wird aufgerufen, sobald auf den Container geklickt wird.
  */
 const eventList = [
-  {
-    text: 'CA',
-    callback: () =>
-      webSocket.send({
-        action: 'set current state',
-        statePostal: 'CA',
-        sendData: 'flowics',
-      }),
-  },
-  {
-    text: 'TX',
-    callback: () =>
-      webSocket.send({
-        action: 'set current state',
-        statePostal: 'TX',
-        sendData: 'flowics',
-      }),
-  },
+  //{ text: 'AK', callback: () => webSocket.send({ action: 'set current state', statePostal: 'AK', sendData: 'flowics' })},
+  //{ text: 'AL', callback: () => webSocket.send({ action: 'set current state', statePostal: 'AL', sendData: 'flowics' })},
+  //{ text: 'AR', callback: () => webSocket.send({ action: 'set current state', statePostal: 'AR', sendData: 'flowics' })},
+  { text: 'AZ', callback: () => webSocket.send({ action: 'set current state', statePostal: 'AZ', sendData: 'flowics' })},
+  { text: 'CA', callback: () => webSocket.send({ action: 'set current state', statePostal: 'CA', sendData: 'flowics' })},
+  //{ text: 'CO', callback: () => webSocket.send({ action: 'set current state', statePostal: 'CO', sendData: 'flowics' })},
+  //{ text: 'CT', callback: () => webSocket.send({ action: 'set current state', statePostal: 'CT', sendData: 'flowics' })},
+  //{ text: 'DC', callback: () => webSocket.send({ action: 'set current state', statePostal: 'DC', sendData: 'flowics' })},
+  //{ text: 'DE', callback: () => webSocket.send({ action: 'set current state', statePostal: 'DE', sendData: 'flowics' })},
+  { text: 'FL', callback: () => webSocket.send({ action: 'set current state', statePostal: 'FL', sendData: 'flowics' })},
+  { text: 'TX', callback: () => webSocket.send({ action: 'set current state', statePostal: 'TX', sendData: 'flowics' })},
 ];
 
 ////////////////////
@@ -51,7 +44,7 @@ const eventList = [
  * verloren geht, wird beim nächsten Sendung versucht, eine neue aufzubauen.
  */
 class WS {
-  static #URL = 'https://data.v-sion.de:3000/data-providers/ap/current-state';
+  static #URL = 'http://localhost:3000/data-providers/ap/current-state';
   #websocket;
 
   constructor() {
@@ -152,7 +145,9 @@ const getChildren = (element) => {
  */
 const addClickEvent = (text, callback) => {
   const textElement = findNode(siteStructure, 'text', text).element;
-  textElement.closest('[data-cy^="Text-"]').addEventListener('click', callback);
+  textElement
+    .closest('[data-cy^="Text-"]')
+    .addEventListener('click', callback);
 };
 
 /**
@@ -192,37 +187,32 @@ const postRequest = async (url, body) => {
 //////////////
 let timer;
 const observer = new MutationObserver((mutations, observer) => {
-  if (
-    mutations.every(
-      (mutation) =>
-        mutation.target.closest('[data-cy^="TextCrawler-"]') === null,
-    )
-  ) {
+    if (mutations.every(mutation => mutation.target.closest('[data-cy^="TextCrawler-"]') === null)) {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      observer.disconnect();
-      init();
+        observer.disconnect();
+        init();
     }, 750);
-  }
+    }
 });
 
 const waitForDomContent = () => {
-  console.log('waitForDomContent');
-  setTimeout(() => {
-    const rootContainer = document.querySelector('#root-container');
-    console.log(rootContainer);
+    console.log('waitForDomContent')
+    setTimeout(() => {
+        const rootContainer = document.querySelector('#root-container')
+        console.log(rootContainer);
 
-    if (rootContainer !== null) {
-      observer.observe(rootContainer, {
-        attributes: false,
-        childList: true,
-        subtree: true,
-      });
-    } else {
-      waitForDomContent();
-    }
-  }, 500);
-};
+        if (rootContainer !== null) {
+            observer.observe(rootContainer, {
+            attributes: false,
+            childList: true,
+            subtree: true,
+            });
+        } else {
+            waitForDomContent()
+        }
+    }, 500)
+}
 waitForDomContent();
 
 let webSocket;
