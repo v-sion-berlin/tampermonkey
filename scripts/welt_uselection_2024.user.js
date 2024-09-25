@@ -22,6 +22,11 @@ console.log('Load Tampermonkey script');
  * dass das Event im Flowics auf diesem Container liegt.
  * Der Callback wird aufgerufen, sobald auf den Container geklickt wird.
  */
+//const eventList = []
+//const stateList = ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
+//for (state in stateList) {
+//  eventList.push({ text: state, callback: () => webSocket.send({ action: 'set current state', statePostal: state, sendData: 'flowics' })})
+//}
 const eventList = [
   // { text: 'AK', callback: () => webSocket.send({ action: 'set current state', statePostal: 'AK', sendData: 'flowics' })},
   // { text: 'AL', callback: () => webSocket.send({ action: 'set current state', statePostal: 'AL', sendData: 'flowics' })},
