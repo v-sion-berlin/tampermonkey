@@ -22,65 +22,11 @@ console.log('Load Tampermonkey script');
  * dass das Event im Flowics auf diesem Container liegt.
  * Der Callback wird aufgerufen, sobald auf den Container geklickt wird.
  */
-//const eventList = []
-//const stateList = ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
-//for (state in stateList) {
-//  eventList.push({ text: state, callback: () => webSocket.send({ action: 'set current state', statePostal: state, sendData: 'flowics' })})
-//}
-const eventList = [
-  // { text: 'AK', callback: () => webSocket.send({ action: 'set current state', statePostal: 'AK', sendData: 'flowics' })},
-  // { text: 'AL', callback: () => webSocket.send({ action: 'set current state', statePostal: 'AL', sendData: 'flowics' })},
-  // { text: 'AR', callback: () => webSocket.send({ action: 'set current state', statePostal: 'AR', sendData: 'flowics' })},
-  { text: 'AZ', callback: () => webSocket.send({ action: 'set current state', statePostal: 'AZ', sendData: 'flowics' })},
-  { text: 'CA', callback: () => webSocket.send({ action: 'set current state', statePostal: 'CA', sendData: 'flowics' })},
-  // { text: 'CO', callback: () => webSocket.send({ action: 'set current state', statePostal: 'CO', sendData: 'flowics' })},
-  // { text: 'CT', callback: () => webSocket.send({ action: 'set current state', statePostal: 'CT', sendData: 'flowics' })},
-  // { text: 'DC', callback: () => webSocket.send({ action: 'set current state', statePostal: 'DC', sendData: 'flowics' })},
-  // { text: 'DE', callback: () => webSocket.send({ action: 'set current state', statePostal: 'DE', sendData: 'flowics' })},
-  { text: 'FL', callback: () => webSocket.send({ action: 'set current state', statePostal: 'FL', sendData: 'flowics' })},
-  // { text: 'GA', callback: () => webSocket.send({ action: 'set current state', statePostal: 'GA', sendData: 'flowics' })},
-  // { text: 'HI', callback: () => webSocket.send({ action: 'set current state', statePostal: 'HI', sendData: 'flowics' })},
-  // { text: 'IA', callback: () => webSocket.send({ action: 'set current state', statePostal: 'IA', sendData: 'flowics' })},
-  { text: 'ID', callback: () => webSocket.send({ action: 'set current state', statePostal: 'ID', sendData: 'flowics' })},
-  // { text: 'IL', callback: () => webSocket.send({ action: 'set current state', statePostal: 'IL', sendData: 'flowics' })},
-  // { text: 'IN', callback: () => webSocket.send({ action: 'set current state', statePostal: 'IN', sendData: 'flowics' })},
-  // { text: 'KS', callback: () => webSocket.send({ action: 'set current state', statePostal: 'KS', sendData: 'flowics' })},
-  // { text: 'KY', callback: () => webSocket.send({ action: 'set current state', statePostal: 'KY', sendData: 'flowics' })},
-  // { text: 'LA', callback: () => webSocket.send({ action: 'set current state', statePostal: 'LA', sendData: 'flowics' })},
-  { text: 'MA', callback: () => webSocket.send({ action: 'set current state', statePostal: 'MA', sendData: 'flowics' })},
-  // { text: 'MD', callback: () => webSocket.send({ action: 'set current state', statePostal: 'MD', sendData: 'flowics' })},
-  // { text: 'ME', callback: () => webSocket.send({ action: 'set current state', statePostal: 'ME', sendData: 'flowics' })},
-  // { text: 'MI', callback: () => webSocket.send({ action: 'set current state', statePostal: 'MI', sendData: 'flowics' })},
-  // { text: 'MN', callback: () => webSocket.send({ action: 'set current state', statePostal: 'MN', sendData: 'flowics' })},
-  // { text: 'MO', callback: () => webSocket.send({ action: 'set current state', statePostal: 'MO', sendData: 'flowics' })},
-  // { text: 'MS', callback: () => webSocket.send({ action: 'set current state', statePostal: 'MS', sendData: 'flowics' })},
-  { text: 'MT', callback: () => webSocket.send({ action: 'set current state', statePostal: 'MT', sendData: 'flowics' })},
-  // { text: 'NC', callback: () => webSocket.send({ action: 'set current state', statePostal: 'NC', sendData: 'flowics' })},
-  // { text: 'ND', callback: () => webSocket.send({ action: 'set current state', statePostal: 'ND', sendData: 'flowics' })},
-  // { text: 'NE', callback: () => webSocket.send({ action: 'set current state', statePostal: 'NE', sendData: 'flowics' })},
-  { text: 'NH', callback: () => webSocket.send({ action: 'set current state', statePostal: 'NH', sendData: 'flowics' })},
-  // { text: 'NJ', callback: () => webSocket.send({ action: 'set current state', statePostal: 'NJ', sendData: 'flowics' })},
-  // { text: 'NM', callback: () => webSocket.send({ action: 'set current state', statePostal: 'NM', sendData: 'flowics' })},
-  { text: 'NV', callback: () => webSocket.send({ action: 'set current state', statePostal: 'NV', sendData: 'flowics' })},
-  // { text: 'NY', callback: () => webSocket.send({ action: 'set current state', statePostal: 'NY', sendData: 'flowics' })},
-  // { text: 'OH', callback: () => webSocket.send({ action: 'set current state', statePostal: 'OH', sendData: 'flowics' })},
-  // { text: 'OK', callback: () => webSocket.send({ action: 'set current state', statePostal: 'OK', sendData: 'flowics' })},
-  { text: 'OR', callback: () => webSocket.send({ action: 'set current state', statePostal: 'OR', sendData: 'flowics' })},
-  // { text: 'PA', callback: () => webSocket.send({ action: 'set current state', statePostal: 'PA', sendData: 'flowics' })},
-  // { text: 'RI', callback: () => webSocket.send({ action: 'set current state', statePostal: 'RI', sendData: 'flowics' })},
-  // { text: 'SC', callback: () => webSocket.send({ action: 'set current state', statePostal: 'SC', sendData: 'flowics' })},
-  // { text: 'SD', callback: () => webSocket.send({ action: 'set current state', statePostal: 'SD', sendData: 'flowics' })},
-  // { text: 'TN', callback: () => webSocket.send({ action: 'set current state', statePostal: 'TN', sendData: 'flowics' })},
-  { text: 'TX', callback: () => webSocket.send({ action: 'set current state', statePostal: 'TX', sendData: 'flowics' })},
-  // { text: 'UT', callback: () => webSocket.send({ action: 'set current state', statePostal: 'UT', sendData: 'flowics' })},
-  // { text: 'VA', callback: () => webSocket.send({ action: 'set current state', statePostal: 'VA', sendData: 'flowics' })},
-  { text: 'VT', callback: () => webSocket.send({ action: 'set current state', statePostal: 'VT', sendData: 'flowics' })},
-  { text: 'WA', callback: () => webSocket.send({ action: 'set current state', statePostal: 'WA', sendData: 'flowics' })},
-  // { text: 'WI', callback: () => webSocket.send({ action: 'set current state', statePostal: 'WI', sendData: 'flowics' })},
-  // { text: 'WV', callback: () => webSocket.send({ action: 'set current state', statePostal: 'WV', sendData: 'flowics' })},
-  { text: 'WY', callback: () => webSocket.send({ action: 'set current state', statePostal: 'WY', sendData: 'flowics' })}
-];
-
+const eventList = []
+const stateList = ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
+for (state in stateList) {
+  eventList.push({ text: state, callback: () => webSocket.send({ action: 'set current state', statePostal: state, sendData: 'flowics' })})
+}
 
 ////////////////////
 //// Websockets ////
