@@ -12,6 +12,10 @@
 'use strict';
 
 console.log('Load Tampermonkey script');
+const DATA_SERVER = {
+  url: 'http://webnosql01av.tv.asinfra.net/',
+  port: 3000
+}
 ////////////////////
 //// Event List ////
 ////////////////////
@@ -36,7 +40,7 @@ stateList.forEach((state) => {
  * verloren geht, wird beim nächsten Sendung versucht, eine neue aufzubauen.
  */
 class WS {
-  static #URL = 'http://localhost:3000/data-providers/ap/current-state';
+  static #URL = `${DATA_SERVER.url}:${DATA_SERVER.port}/data-providers/ap/current-state`;
   #websocket;
 
   constructor() {
