@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bundestagswahl 2025 Civey
 // @namespace    http://tampermonkey.net/
-// @version      2025-01-29_14-50
+// @version      2025-01-29_21-00
 // @description  Changes the styling of the civey polls inside the iframe
 // @author       Andreas Müller <andreas.mueller@v-sion.de
 // @match        *://app.civey.com/*
