@@ -24,20 +24,25 @@ header {
   //span { font-size: 45px !important; }
 }
 
-// DEPRECATED
-.analytics-widget-module__chartContainer__Pt46J {
+/* CONTENT */
+[class^='analytics-widget-module__chartContainer'] {
+  // DEPRECATED
   //zoom: 3 !important;
   //height: 40% !important;
   //margin: 16px
-}
 
-.analytics-widget-module__chartContainer__Pt46J {
   /* LEGENDE */
   [class^='legend-module__'] {
     zoom: 0.9 !important;
     //display:none !important
   }
+
+  [class^='map-module__zoomControls'] {
+    display: none;
+  }
 }
+
+
 
 /* FOOTER */
 [class^='analytics-widget-module__metadataWrapper'] {
