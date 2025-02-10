@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bundestagswahl 2025 Civey
 // @namespace    http://tampermonkey.net/
-// @version      2025-01-29_21-00
+// @version      2025-02-10_14-14
 // @description  Changes the styling of the civey polls inside the iframe
 // @author       Andreas Müller <andreas.mueller@v-sion.de
 // @match        *://app.civey.com/*
@@ -16,12 +16,14 @@ const style=`
 
 /* BACKGROUND */
 main {
-  background: rgba(255, 255, 255, 0.75) !important;
+  background: rgba(255, 255, 255, 0.0) !important;
+   border: 0 !important;
 }
 
 /* HEADER */
 header {
   //span { font-size: 45px !important; }
+  border: 0 !important;
 }
 
 /* CONTENT */
@@ -37,6 +39,11 @@ header {
     //display:none !important
   }
 
+  .vx-group:not(.vx-axis) {
+    font-size: 20px;
+  }
+
+  /* MAP ZOOM */
   [class^='map-module__zoomControls'] {
     display: none;
   }
