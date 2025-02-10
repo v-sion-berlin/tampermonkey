@@ -17,7 +17,7 @@ const style=`
 /* BACKGROUND */
 main {
   background: rgba(255, 255, 255, 0.0) !important;
-   border: 0 !important;
+  border: 0 !important;
 }
 
 /* HEADER */
@@ -28,10 +28,7 @@ header {
 
 /* CONTENT */
 [class^='analytics-widget-module__chartContainer'] {
-  // DEPRECATED
-  //zoom: 3 !important;
-  //height: 40% !important;
-  //margin: 16px
+  margin: 0 0 10px 0 !important;
 
   /* LEGENDE */
   [class^='legend-module__'] {
